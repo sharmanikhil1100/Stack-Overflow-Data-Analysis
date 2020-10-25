@@ -5,16 +5,16 @@ import math
 
 df = pd.read_csv("survey_results_public.csv")
 
-######### Head values #########
+''' 
+Head values 
+'''
 # print(df.head())
 
-######### First three rows of each column #########
-# for col in data.columns:
-#     print(col)
-#     print(data[col][:3])
-#     print("___")
 
-######### Utility #########
+''' 
+Utility functions 
+'''
+
 # Prints unique values
 # df.unique()
 def merge_df(df1, df2, on_col):
@@ -43,7 +43,11 @@ def continentMapping(df):
 
     return df_continent
 
-######### Question1 : Average age of developers when they wrote their first line of code. #########
+
+''' 
+Question1 : Average age of developers when they wrote their first line of code. 
+'''
+
 def ageFirstCode(df):
     df = df['Age1stCode']
     #Discrepancy 1
@@ -55,7 +59,11 @@ def ageFirstCode(df):
     mean = df.mean(skipna=True)
     print(mean)
 
-######### Question2 : Percentage of developers who know python in each country. #########
+
+''' 
+Question2 : Percentage of developers who know python in each country. 
+'''
+
 def isPython(df_person):
     # Point : str was not passed
     lang = str(df_person).split(';')
@@ -84,7 +92,11 @@ def knowPython(df):
     # print(df_merged_cols.head())
     print(df_merged_cols.groupby(['Country','LanguageWorkedWith']).agg(np.sum))
 
-######### Question3 : Average Salary of developer based on continent #########
+
+''' 
+Question3 : Average Salary of developer based on continent 
+'''
+
 def avgContinentSalary(df):
     df_continent = continentMapping(df)
 
@@ -98,7 +110,10 @@ def avgContinentSalary(df):
     df_merged_cols = df_merged_cols.drop(['Respondent'], axis=1)
     print(df_merged_cols.groupby('Continent').agg(np.mean))
 
-######### Question4 : Most desired programming language for year 2020. #########
+
+''' 
+Question4 : Most desired programming language for year 2020. 
+'''
 
 languages_next_year = {
     'Assembly':0,
@@ -218,7 +233,11 @@ def nextYear(df):
         v = languages_next_year[k] - languages_this_year[k]
         print("Most desired language/s : %s. %d people chose this as the language they will use next year."%(k, v) )
 
-######### Question5 : People who code as hobby based on gender and continent #########
+
+''' 
+Question5 : People who code as hobby based on gender and continent 
+'''
+
 def genderMapping(row):
     if row=='Man':
         return 'Man'
@@ -250,7 +269,11 @@ def codeAsHobby(df):
     
     print(df_merged_cols)
 
-######### Question6 : People who are satisfied with their job/career based on gender and continent #########
+
+''' 
+Question6 : People who are satisfied with their job/career based on gender and continent 
+'''
+
 def satisfied(df):
     df_continent = continentMapping(df)
 
@@ -275,7 +298,10 @@ def satisfied(df):
 
     print(df_merged_cols)
 
-######### Choose questions to run #########
+
+''' 
+Choose questions to run 
+'''
 
 print('Question 1: Average age of developers when they wrote their first line of code.')
 print('Question 2: Percentage of developers who know python in each country.')
