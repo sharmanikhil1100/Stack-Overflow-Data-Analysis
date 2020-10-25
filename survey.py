@@ -343,6 +343,7 @@ while(True):
     elif entered == 6:
         dfclass.satisfied(df)
     else:
+        print('Ended...')
         break
     print(' ')
     print('Enter 0 to stop')
